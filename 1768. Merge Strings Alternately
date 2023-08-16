@@ -1,0 +1,21 @@
+class Solution(object):
+    def mergeAlternately(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: str
+        """
+        word1, word2 = list(word1), list(word2)
+
+        result = []
+        
+        while len(word1)!=0 or len(word2)!=0:
+            if len(word1)!=0:
+                result.append(word1.pop(0))
+            if len(word2)!=0:            
+                result.append(word2.pop(0))
+        answer = ""
+        for ch in result :
+            answer += ch
+
+        return answer
