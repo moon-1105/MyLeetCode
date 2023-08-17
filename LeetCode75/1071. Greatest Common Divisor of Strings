@@ -1,0 +1,40 @@
+from collections import defaultdict
+class Solution(object):
+    def gcdOfStrings(self, str1, str2):
+        """
+        :type str1: str
+        :type str2: str
+        :rtype: str
+        """
+        #simple_case
+        N, M = len(str1), len(str2)
+        #candidate
+        count = defaultdict(int)
+        if N < M :
+            if int(M//N)*str1 == str2:
+                return str1
+            else:
+                for i in range(len(str1)):
+                    for j in range(i+2, len(str1)+1): 
+                        count[str1[i:j]] +=1
+        else:
+            if int(N//M)*str2 == str1:
+                return str2
+            else:
+                for i in range(len(str2)):
+                    for j in range(i+2, len(str2)+1):
+                        count[str2[i:j]] +=1
+        #print(count)
+        candidates=[]
+        for key in count.keys():
+            #print(key, (N+M)/len(key))
+            if count[key] >= 2:
+                if str1 == key * (N/len(key)) and str2 == key * (M/len(key)):
+                    candidates.append([len(key),key])
+
+        if len(candidates)==0:
+            return ""
+        candidates.sort(reverse=True)
+        return candidates[0][1]
+
+
