@@ -1,0 +1,30 @@
+class Solution(object):
+    def canPlaceFlowers(self, flowerbed, n):
+        """
+        :type flowerbed: List[int]
+        :type n: int
+        :rtype: bool
+        """
+        arr,count = [],0
+        if flowerbed==[0]:
+            return True
+        if len(flowerbed)>=2 and flowerbed[0]==0 and flowerbed[1] == 0:
+            count = 1
+            flowerbed = flowerbed[1:]
+
+        while len(flowerbed) != 0 :
+            arr.append(flowerbed.pop(0))
+            if len(arr)==3:
+                if arr == [0,0,0]:
+                    count += 1
+                    arr= [0]
+                else:
+                    arr.pop(0)
+            if len(flowerbed)==0 and arr==[0,0]:
+                count+=1
+        #print(count)
+        
+        if count >= n :
+            return True
+        return False
+            
