@@ -1,0 +1,19 @@
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        N = len(nums)
+        left, right, answer = [1]*N, [1]*N, []
+        # i 기준으로 왼쪽에 있는거 다 곱하기 
+        for i in range(0, N-1):
+            left[i+1] = left[i]*nums[i] 
+        # i 기준으로 오른쪽에 있는 거 다 곱하기 
+        for i in range(N-1,0,-1):
+            right[i-1] = right[i]*nums[i] 
+
+        for i in range(0, N):
+            answer.append(left[i]*right[i])
+
+        return answer
