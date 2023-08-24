@@ -1,0 +1,16 @@
+class Solution(object):
+    def increasingTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        first, second = float('inf'), float('inf')
+        for n in nums:
+            if n <= first :
+               first = n
+            elif first < n and n <= second :
+                second = n 
+            else:
+                #first 와 second 보다 큰게 존재한다면 조건이 성립하므로 True
+                return True
+        return False
