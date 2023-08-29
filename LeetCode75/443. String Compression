@@ -5,20 +5,39 @@ class Solution(object):
         :type chars: List[str]
         :rtype: int
         """
-#        dic=defaultdict(int)
-#        print(dic)
-        arr = []
-        cnt, now = 1, chars[0]
-        for i in range(1, len(chars)):
-            if chars[i] == now:
-                cnt += 1
+        idx = 0
+        while idx < len(chars)-1:
+            now = chars[idx]
+            _next = chars.pop(idx+1)
+            if now == _next:
+                cnt = 1
+                while now == _next and idx < len(chars)-1:
+                    _next = chars.pop(idx+1)
+                    cnt+=1
+                print(now, cnt)
+                if now != _next :
+                    if cnt < 10 :
+                        chars.insert(idx+1, _next)
+                        chars.insert(idx+1, str(cnt))
+                    else:
+                        chars.insert(idx+1, _next)
+                        while cnt >= 10:
+                            chars.insert(idx+1, str(cnt%10))
+                            cnt/=10
+                        chars.insert(idx+1, str(cnt%10)) 
+                else:
+                    cnt += 1
+                    if cnt < 10 :
+                        chars.insert(idx+1, str(cnt))
+                    else:
+                        while cnt >= 10:
+                            chars.insert(idx+1, str(cnt%10))
+                            cnt/=10
+                        chars.insert(idx+1, str(cnt%10))
             else:
-                arr.append(str(now))
-                arr.append(str(cnt))
-                now = chars[i]
-                cnt  = 1
-        arr.append(str(now))
-        arr.append(str(cnt))
-        print(arr)
-        chars = arr
-        return len(arr)
+                chars.insert(idx+1,_next)
+            idx += 1
+                    
+                
+
+
