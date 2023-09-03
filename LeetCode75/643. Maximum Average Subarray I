@@ -1,0 +1,26 @@
+class Solution(object):
+    def findMaxAverage(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: float
+        """
+        if len(nums) <= k:
+            return sum(nums)/float(len(nums))
+        if k == 1 :
+            return float(max(nums))
+        #모든 걸 다 구하지 않고, 더해지는 값들만 더하고 빼는게 포인트임 
+        idx, _sum = 1,0
+        for i in range(0, k):
+            _sum += nums[i]
+        Max = _sum
+        while idx < len(nums)-k+1:
+            #print(Max, nums[idx-1], nums[idx+k-1])
+            #print(_sum-nums[idx-1]+nums[idx+k-1])
+            _sum = _sum-nums[idx-1]+nums[idx+k-1]
+            Max = max(Max, _sum)
+            idx += 1
+            
+        return Max/float(k)
+
+        
