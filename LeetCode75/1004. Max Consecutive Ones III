@@ -1,0 +1,22 @@
+class Solution(object):
+    def longestOnes(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        L = 0
+        for R in range(0, len(nums)):
+            #print(L, R, k)
+            if nums[R] == 0 :
+                k-=1
+            #더 오른쪽으로 갈 수 없으니 
+            if k < 0 :
+                # 왼쪽을 봤을때 (이미 지나온) 0 이 제외되면 k+=1 을 함 
+                if nums[L] == 0 :
+                    k+=1
+                # 그렇지 않으면 그냥 버림 
+                L+=1
+        return R-L+1
+        
+        
