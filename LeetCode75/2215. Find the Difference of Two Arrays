@@ -1,0 +1,23 @@
+from collections import defaultdict
+class Solution(object):
+    def findDifference(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[List[int]]
+        """
+        arr1=defaultdict(int)
+        arr2=defaultdict(int)
+        for ele in nums1:
+            arr1[ele]+=1
+        for ele in nums2:
+            arr2[ele]+=1
+        answer= [[],[]]
+        for ele in nums1:
+            if arr2[ele]==0 and ele not in answer[0]:
+                answer[0].append(ele)
+        for ele in nums2:
+            if arr1[ele]==0 and ele not in answer[1]:
+                answer[1].append(ele)
+        
+        return answer
