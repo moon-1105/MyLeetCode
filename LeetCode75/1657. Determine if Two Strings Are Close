@@ -1,0 +1,44 @@
+from collections import defaultdict
+class Solution(object):
+    def closeStrings(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: bool
+        """
+        wordchk1, wordchk2 = defaultdict(int), defaultdict(int)
+        
+        for ch in word1 :
+            wordchk1[ch] += 1
+        for ch in word2 :
+            wordchk2[ch] += 1
+        #case1
+        case1 = True
+        for ch in wordchk1.keys():
+            if wordchk1[ch] != wordchk2[ch]:
+                case1 = False
+        for ch in wordchk2.keys():
+            if wordchk1[ch] != wordchk2[ch]:
+                case1 = False
+        if case1 :
+            return True
+
+        #case2 
+        countchk1, countchk2 = defaultdict(int), defaultdict(int)
+        case2 = True
+        for ch1 in wordchk1.keys():
+            for ch2 in wordchk2.keys():
+                if wordchk1[ch1] == wordchk2[ch2] and wordchk1[ch1] != -1 :
+                    if wordchk2[ch1] != 0 :
+                        wordchk1[ch1] = -1
+                        wordchk2[ch2] = -1
+        #print(wordchk1, wordchk2)
+        for ele in wordchk2.keys():
+            if wordchk2[ele] != -1 :
+                case2 = False
+            if wordchk1[ele] != -1 :
+                case2 = False
+        if case2 :
+            return True
+        return False
+             
