@@ -1,0 +1,22 @@
+class Solution(object):
+    def equalPairs(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        N = len(grid)
+        idx = 0
+        columns = []
+        for i in range(0,N):
+            tmp = []
+            for j in range(0,N):
+                tmp.append(grid[j][i]) 
+            columns.append(tmp)
+        ans = 0
+        for one in grid:
+            for two in columns:
+                if one == two :
+                    ans += 1
+        return ans
+            
+        
