@@ -1,0 +1,33 @@
+class Solution(object):
+    def asteroidCollision(self, asteroids):
+        """
+        :type asteroids: List[int]
+        :rtype: List[int]
+        """
+        answer = []
+        while len(asteroids)!=0 :
+            now = asteroids.pop(0)
+    
+            if now < 0 :
+                while len(answer)!=0 and max(answer) > 0:
+                    pre = answer.pop()
+                    #print(asteroids, answer, now, pre)
+                    if now*(-1) > pre :
+                        continue
+                    elif now*(-1) < pre:
+                        answer.append(pre)
+                        break
+                    else :
+                        break
+                else:
+                    answer.append(now)
+            else:
+                answer.append(now)
+
+        return answer
+            
+            
+
+
+        
+        
