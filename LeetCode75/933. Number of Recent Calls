@@ -1,0 +1,16 @@
+from collections import deque
+class RecentCounter(object):
+    def __init__(self):
+        self.counter = deque()
+        
+    def ping(self, t):
+        """
+        :type t: int
+        :rtype: int
+        """
+        self.counter.append(t)
+        #현재위치와 q의 맨 앞이 3000개 이상 차이나면.. 포함이 안되는거니까 없애야함
+        while t-self.counter[0] > 3000:
+            self.counter.popleft()
+        #다없앴으면 그 개수만큼 return 
+        return len(self.counter)
