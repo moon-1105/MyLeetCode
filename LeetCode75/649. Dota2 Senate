@@ -1,0 +1,29 @@
+class Solution(object):
+    def predictPartyVictory(self, senate):
+        """
+        :type senate: str
+        :rtype: str
+        """
+        senate = list(senate)
+        while len(senate) > 1 :
+            print(senate)
+            now = senate.pop(0)
+            next = senate.pop(0)
+            if now != next :
+                senate.append(now)
+            else:
+                senate.append(now)
+                senate.append(next)
+
+            if "D" not in senate:
+                return "Radiant"
+            if "R" not in senate:
+                return "Dire"
+        #print(senate)
+        if senate[0] == "D":
+            return "Dire"
+        else:
+            return "Radiant"
+
+
+        
