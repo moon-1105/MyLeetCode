@@ -1,0 +1,41 @@
+class Solution(object):
+    def decodeString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        s = list(s)
+        stack = []
+        answer = ""
+        while len(s)!=0:
+            now = s.pop(0)
+            if now == "]":
+                number,tmp = "", ""
+                back = stack.pop()
+                while back != "[":
+                    tmp = back +tmp
+                    back = stack.pop()
+
+                number = stack.pop()
+                #check more number
+                while len(stack) > 0:
+                    pre = stack.pop()
+                    if pre.isnumeric():
+                        number = pre + number
+                    else:
+                        stack.append(pre)
+                        break
+                    
+                for _ in range(0, int(number)):
+                    stack.append(tmp)
+            else:
+                stack.append(now)
+        #print(stack)
+        for ele in stack:
+            answer += ele
+        return answer
+                
+
+
+
+        
