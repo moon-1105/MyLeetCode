@@ -27,6 +27,8 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
+        if root == None:
+            return 0
         dfs(root, 1)
         global arr
         ans = max(arr)
