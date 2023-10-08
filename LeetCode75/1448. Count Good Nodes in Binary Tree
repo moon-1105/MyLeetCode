@@ -1,0 +1,31 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+cnt = 0
+def dfs(now, path):
+    if now==None:
+        print(path,"ff")
+        return 
+    if len(path)==0 or max(path) <= now.val :
+        global cnt
+        cnt += 1
+    path.append(now.val)
+    dfs(now.left, path)
+    dfs(now.right, path)
+
+class Solution(object):
+    def goodNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        global cnt
+        cnt = 0
+        dfs(root, [])
+
+        return cnt
+    
+        
