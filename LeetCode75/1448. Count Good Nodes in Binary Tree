@@ -5,16 +5,16 @@
 #         self.left = left
 #         self.right = right
 cnt = 0
-def dfs(now, path):
+def dfs(now, Max):
     if now==None:
-        print(path,"ff")
         return 
-    if len(path)==0 or max(path) <= now.val :
+    if Max <= now.val :
         global cnt
         cnt += 1
-    path.append(now.val)
-    dfs(now.left, path)
-    dfs(now.right, path)
+        Max = now.val
+
+    dfs(now.left, Max)
+    dfs(now.right, Max)
 
 class Solution(object):
     def goodNodes(self, root):
@@ -24,7 +24,7 @@ class Solution(object):
         """
         global cnt
         cnt = 0
-        dfs(root, [])
+        dfs(root, root.val)
 
         return cnt
     
