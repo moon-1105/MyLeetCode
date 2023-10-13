@@ -1,0 +1,27 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        if root==None or root == p or root == q:
+            return root
+
+        res1 = self.lowestCommonAncestor(root.left, p,q)
+        #print(res1)
+        res2 = self.lowestCommonAncestor(root.right, p,q)
+        #print(res2)
+        #둘다 값이 있다면, 왼쪽 오른쪽 중에 p, q 가 있다는 뜻이므로 현재 root 를 반환
+        if res1 and res2 :
+            return root
+        #둘중에 하나가 없다면.. 다른 하위 아래에 하나가 있는거니까 하위를 반환 
+        return res1 or res2
