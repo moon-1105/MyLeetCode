@@ -4,33 +4,31 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-cnt = 0
-def dfs(now, targetSum, path_sum):
-    if now==None or path_sum == targetSum:
-        print(now)
-        if path_sum == targetSum:
-            global cnt 
-            cnt += 1
-        return
-    path_sum += now.val
-    dfs(now.left, targetSum, path_sum)
-    dfs(now.right, targetSum, path_sum)
-
-def calStart(start, targetSum):
-    if start==None:
-        return 
-    dfs(start, targetSum, 0)
-    calStart(start.left, targetSum)
-    calStart(start.right, targetSum)
 
 class Solution(object):
+    def dfs(self,now, targetSum):
+        if now==None :
+            return 
+        if now.val == targetSum:
+            self.cnt += 1
+        #총합을 재지말고 합에서 본값을 빼기 
+        self.dfs(now.left, targetSum - now.val)
+        self.dfs(now.right, targetSum - now.val)
+
+    def calStart(self, start, targetSum):
+        if start==None:
+            return 
+        self.dfs(start, targetSum)
+        self.calStart(start.left, targetSum)
+        self.calStart(start.right, targetSum)
+
     def pathSum(self, root, targetSum):
         """
         :type root: TreeNode
         :type targetSum: int
         :rtype: int
         """
-        calStart(root, targetSum)    
-        global cnt
-        return cnt
+        self.cnt = 0
+        self.calStart(root, targetSum)    
+        return self.cnt
 
