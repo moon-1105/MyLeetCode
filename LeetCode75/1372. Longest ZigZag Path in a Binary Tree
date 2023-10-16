@@ -10,25 +10,16 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        self.Max = 0
-        self.leftDfs(root, 0, [])
-        self.rightDfs(root, 0, [])
-        
-        return self.Max
-
-    def rightDfs(self, now, dept, path):
-        if now.right == None:
-            print(path, dept)
-            self.Max = max(dept, self.Max)
-            return 
-        path.append("R")
-        self.leftDfs(now.right, dept+1, path)
-        
-    def leftDfs(self, now, dept, path):
-        if now.left == None :
-            print(path, dept)
-            self.Max = max(dept, self.Max)
-            return
-        path.append("L")
-        print("Left",now.left, "right",now.right)
-        self.rightDfs(now.left, dept+1, path)
+        res = 0
+        st = [(root, 0, None)]
+        while st:
+            now, n, left = st.pop()
+            if now != None :
+                res = max(res, n)
+                if left == True :
+                    st.append((now.left, 1, True))
+                    st.append((now.right, n+1, False))
+                else:
+                    st.append((now.left, n+1, True))
+                    st.append((now.right, 1, False))
+        return res
