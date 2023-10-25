@@ -1,0 +1,32 @@
+from collections import deque
+from collections import defaultdict
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def maxLevelSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        Q = deque()
+        Q.append([root, 1])
+        res = defaultdict(int)
+        while len(Q)!=0:
+            now = Q.popleft()
+            #print(now[0].val, now[1])
+            res[now[1]] += now[0].val
+            if now[0].left :
+                Q.append([now[0].left, now[1]+1])
+            if now[0].right :
+                Q.append([now[0].right, now[1]+1])
+        #print(res)
+        ans, Max = 1, root.val
+        for ele in res.keys():
+            if Max < res[ele] :
+                ans = ele
+                Max = res[ele]
+        return ans
