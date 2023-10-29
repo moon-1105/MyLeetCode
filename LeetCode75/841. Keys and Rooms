@@ -1,0 +1,30 @@
+class Solution(object):
+    def dfs(self, rooms, now, keys):
+        if now not in self.history :
+            self.history.append(now)
+        for key in rooms[now]:
+            #print(key, self.history)
+            if key not in self.history :
+                keys.append(key)
+        if len(keys)==0 :
+            return 
+        else:
+            key = keys.pop()
+            self.dfs(rooms, key, keys)
+            
+
+    history = [] 
+    def canVisitAllRooms(self, rooms):
+        """
+        :type rooms: List[List[int]]
+        :rtype: bool
+        """
+        ans = False
+        self.history=[] 
+        self.dfs(rooms, 0, [])
+        #print(self.history)
+        if len(rooms) == len(self.history):
+            ans = True
+
+        return ans
+        
