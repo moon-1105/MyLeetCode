@@ -1,0 +1,24 @@
+class Solution(object):
+    def findCircleNum(self, isConnected):
+        """
+        :type isConnected: List[List[int]]
+        :rtype: int
+        """
+        ans = 0
+        stack = []
+        history = []
+        for start in range(len(isConnected)):
+            if start not in history:
+                stack.append(start)
+                ans += 1
+            while len(stack)!=0 :
+                now = stack.pop(0)
+                history.append(now)
+                #print(now, history)
+                for idx in range(0, len(isConnected)) :
+                    if idx not in history :
+                        if isConnected[idx][now] == 1 :
+                            stack.append(idx)
+        return ans
+
+        
