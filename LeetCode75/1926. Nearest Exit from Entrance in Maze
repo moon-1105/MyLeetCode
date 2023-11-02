@@ -14,12 +14,13 @@ class Solution(object):
         ans = 0 
         q = deque()
         directions = [[1,0],[-1,0],[0,1],[0,-1]]
-        q.append(entrance)
+        q.append([entrance, ans])
         N, M = len(maze[0]), len(maze)
-        print(N, M)
+        #print(N, M)
+
         while len(q)!=0 :
-            now = q.popleft()
-            print(now)
+            now, ans = q.popleft()
+            #print(now)
             maze[now[0]][now[1]] = "*"
             if not same(now, entrance): 
                 if now[0]==0 or now[0] == M-1 or now[1]==0 or now[1]==N-1:
@@ -28,8 +29,7 @@ class Solution(object):
                 nextX, nextY = now[0]+d[0], now[1]+d[1]
                 if 0<= nextX < M and 0<= nextY < N :
                     if maze[nextX][nextY] == ".":
-                        q.append([nextX,nextY])
-            ans += 1
+                        q.append([[nextX,nextY],ans+1])
 
         return -1
 
