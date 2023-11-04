@@ -1,0 +1,60 @@
+from collections import deque
+class Solution(object):
+    def allRotten(self, grid):
+        for i in range(0, len(grid)):
+            for j in range(0, len(grid[0])):
+                if grid[i][j] == 1 :
+                    return False
+        return True 
+
+    def allFresh(self, grid):
+        for i in range(0, len(grid)):
+            for j in range(0, len(grid[0])):
+                if grid[i][j] == 2 :
+                    return False
+        return True 
+
+    def allBlank(self, grid):
+        for i in range(0, len(grid)):
+            for j in range(0, len(grid[0])):
+                if grid[i][j] != 0 :
+                    return False
+        return True 
+
+    def orangesRotting(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        q = deque()
+        row, col = len(grid), len(grid[0])
+        if grid == [[0]] :
+            return 0
+        for i in range(0, row):
+            for j in range(0, col):
+                if grid[i][j] == 2 :
+                    q.append( [tuple([i,j]), 0] )
+        if self.allBlank(grid):
+            return 0 
+        if self.allFresh(grid):
+            return -1 
+
+
+        while len(q)!=0 :
+            now, day = q.popleft()
+            #print(now)
+            #finish??
+            if self.allRotten(grid):
+                return day
+            ##if valid, continue
+            for d in [[1,0],[0,1],[-1,0],[0,-1]]:
+                nX, nY = now[0]+d[0], now[1]+d[1]
+                if 0<= nX < row and 0<= nY < col :
+                    if grid[nX][nY] == 1:
+                        grid[nX][nY] = 2
+                        q.append( [tuple([nX,nY]), day+1] )
+                        
+        return -1 
+
+
+        
