@@ -39,10 +39,14 @@ class Solution(object):
         if self.allFresh(grid):
             return -1 
 
-
         while len(q)!=0 :
             now, day = q.popleft()
-            #print(now)
+            #print(now, day)
+            #for ele in grid :
+            #    print(ele)
+            #print("============")
+
+            grid[now[0]][now[1]] = 2
             #finish??
             if self.allRotten(grid):
                 return day
@@ -51,10 +55,6 @@ class Solution(object):
                 nX, nY = now[0]+d[0], now[1]+d[1]
                 if 0<= nX < row and 0<= nY < col :
                     if grid[nX][nY] == 1:
-                        grid[nX][nY] = 2
                         q.append( [tuple([nX,nY]), day+1] )
                         
         return -1 
-
-
-        
