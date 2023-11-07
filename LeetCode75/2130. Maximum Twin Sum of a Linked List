@@ -1,0 +1,25 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution(object):
+    def pairSum(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: int
+        """
+        tmp = head
+        arr = []
+        while tmp != None :
+            arr.append(tmp.val)
+            tmp = tmp.next
+
+        ans = 0
+        N = len(arr)
+        for idx in range(0,N ):     
+           #print(arr[idx], "twin", )
+           ans = max(ans, arr[idx]+arr[N-1-idx])
+
+        return ans
