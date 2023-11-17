@@ -1,0 +1,24 @@
+class Solution(object):
+    def oddEvenList(self, head):
+        if head==None or head.next == None or head.next.next == None:
+            return head
+        odd=ListNode(head.val)
+        even=ListNode(head.next.val)
+        oddNow = odd
+        evenNow = even
+        now = head.next.next
+        count=2
+        while now!= None:
+            count+=1
+            if count%2 == 0:
+                n = ListNode(now.val)
+                evenNow.next=n
+                evenNow=evenNow.next
+            else:
+                n = ListNode(now.val)
+                oddNow.next=n
+                oddNow=oddNow.next
+            if now.next == None:
+                oddNow.next=even
+            now=now.next
+        return odd
