@@ -1,0 +1,18 @@
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        N = len(nums)
+        k = 0
+        for i in range(0, N):
+            if nums[i] == val :
+                k += 1
+        for i in range(0,N-1):
+            for j in range(i, N-1):
+                if nums[j] == val :
+                    nums[j], nums[j+1] = nums[j+1], nums[j]
+        #print(N-k)
+        print(nums)
+        #print(nums[:N-k])
+        nums = nums[:N-k]
+        return N-k
+        
