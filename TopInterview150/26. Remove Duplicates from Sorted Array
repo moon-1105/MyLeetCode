@@ -1,0 +1,27 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        L, R = 1, len(nums)-1
+        k = 0
+        if R >= 1 :
+            pre, now = nums[0], nums[1]
+        else :
+            return 1
+        while L <= R :
+            now = nums[L]
+            if pre == now :
+                tmp = nums.pop(L)
+                nums.append(tmp)
+                R-=1
+                k+=1
+            else :
+                pre = nums[L]
+                L+=1
+        #print(nums)
+        return len(nums)-k
+            
+        
