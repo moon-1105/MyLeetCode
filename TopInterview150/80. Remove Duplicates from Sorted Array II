@@ -1,0 +1,22 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        check = Counter(nums)
+        k, N = 0, len(nums)
+        idx = 0
+        while idx < N:
+            print(idx, nums[idx], check[idx])
+            if check[nums[idx]] > 2 :
+                #print("remove")
+                check[nums[idx]]-=1
+                tmp = nums.pop(idx)
+                nums.append(tmp)
+                idx-=1
+                k += 1
+            idx += 1
+        #print(nums)
+        #print(k)
+        return N-k
