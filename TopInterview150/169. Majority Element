@@ -1,0 +1,14 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        N = len(nums)
+        check = Counter(nums)
+        for ele in check.keys():
+            #print(check[ele], float(N)/2)
+            if float(N)/2 <= check[ele] :
+                return ele
+        
+        return -1
