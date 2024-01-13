@@ -1,0 +1,50 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        N = len(s)
+        idx = N-1
+        val = 0
+        while idx >= 0 :
+            print(s[idx],val)
+            if s[idx] == "I":
+                val += 1
+            elif s[idx] == "V":
+                if idx > 0 and s[idx-1] =="I":
+                    idx-=1
+                    val += 4
+                else :
+                    val += 5
+            elif s[idx]== "X":
+                if idx > 0 and s[idx-1] =="I":
+                    idx-=1
+                    val += 9
+                else :
+                    val += 10
+            elif s[idx]== "L":
+                if idx >0 and s[idx-1] =="X":
+                    idx-=1
+                    val += 40
+                else :
+                    val += 50
+            elif s[idx]== "C":
+                if idx > 0 and s[idx-1] =="X":
+                    idx-=1
+                    val += 90
+                else :
+                    val += 100
+            elif s[idx]== "D":
+                if idx > 0 and s[idx-1] =="C":
+                    val += 400
+                    idx-=1
+                else :
+                    val += 500
+            elif s[idx]== "M":
+                if idx > 0 and s[idx-1] == "C":
+                    val += 900
+                    idx-=1
+                else :
+                    val += 1000
+            idx -= 1
+            #print(val)
+
+        return val
+        
