@@ -1,0 +1,15 @@
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        reachableIdx = 0
+        for cur in range(len(nums)):
+            #지금까지 가있는 위치 + 갈 수 있는 위치가 > 현재 reachable보다 크다면
+            #reachable 확장 
+            if cur + nums[cur] >= reachableIdx :
+                reachableIdx = cur + nums[cur]
+            #이게 maximum 이면 out .. 위에 업뎃 했는데도 현 위치와 reachable 이 같으면 더 이상 갈 수 없음
+            if cur == reachableIdx :
+                break
+        
+        return reachableIdx >= len(nums)-1 
+
+        
