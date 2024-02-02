@@ -3,7 +3,10 @@ class Solution:
         N, arr = len(s), []
         for _ in range(numRows):
             arr.append([0]*N)
-
+        
+        if numRows==1 :
+            return s
+            
         i, j = 0, 0
         idx = 0
         chk = 0
@@ -35,6 +38,3 @@ class Solution:
         
                 
                 
-            
-
-        
