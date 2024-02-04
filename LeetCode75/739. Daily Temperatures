@@ -1,0 +1,18 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        N = len(temperatures)
+        results = [0]*N
+        st = []
+        for i, temp in enumerate(temperatures) :
+            # stack is not empty 
+            # and temperatures[a top index of stack] is smaller than now 
+            while st and temperatures[st[-1]] < temp :
+                top = st.pop()
+                results[top] = i - top
+                #그러면 results 를 다 update 해줌.. 
+                #그 위치에서(ex.day1).. 현재 위치까지(ex.day3)
+            # put now index in stack
+            st.append(i)
+        return results 
+
+        
