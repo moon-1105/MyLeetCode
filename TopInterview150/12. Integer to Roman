@@ -1,9 +1,18 @@
 class Solution:
     def cal(self, num):
-        if num < 5 :
-            return "I"*num
+        if 1 <= num < 10 :
+            one = ["","I","II","III","IV","V","VI","VII","VIII","IX"]
+            return one[num]
+        elif 10 <= num < 100 :
+            two = ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"]
+            return two[int(num/10)]
+        elif 100 <= num < 1000 :
+            three = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]
+            return three[int(num/100)]
+        elif 1000 <= num :
+            four = ["","M","MM","MMM"]
+            return four[int(num/1000)]
         return ""
-
     def intToRoman(self, num: int) -> str:
         nums = []
         while num > 10 :
@@ -16,3 +25,5 @@ class Solution:
             ans = self.cal(num * int(math.pow(10,idx))) + ans
 
         return ans
+
+        
