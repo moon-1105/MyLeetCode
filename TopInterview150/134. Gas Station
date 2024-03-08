@@ -1,0 +1,9 @@
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        if sum(cost) > sum(gas):
+            return -1
+        N = len(gas)
+        for start in range(N):
+            continue
+        return 3
+        
