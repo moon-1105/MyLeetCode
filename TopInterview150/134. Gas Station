@@ -3,7 +3,26 @@ class Solution:
         if sum(cost) > sum(gas):
             return -1
         N = len(gas)
+        val = [0]*N
+        for i in range(N):
+            val[i] = gas[i]-cost[i-1]
+        print(val)
         for start in range(N):
-            continue
+            print("======start :", start)
+            tank, cnt = gas[start], 0
+            idx = start+1
+            while cnt < N :
+                if idx >= N :
+                    idx = 0
+                cnt += 1
+                print(tank)
+                tank += val[idx]
+                if tank <= 0 :
+                    break
+                idx += 1
+            print("tank ",tank)
+            if tank > 0 :
+                return start
+        
         return 3
         
