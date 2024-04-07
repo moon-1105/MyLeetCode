@@ -1,0 +1,25 @@
+class Solution(object):
+    def minSubArrayLen(self, target, nums):
+        """
+        :type target: int
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        now, L, R = 0, 0, 0
+        ans = len(nums) + 1
+        while R < len(nums) :
+            now += nums[R]
+            while now >= target : # target 보다 현재 값이 크면 
+                ans = min(ans, R-L+1) # 가장 짧은 답을 찾아서.. 
+                now -= nums[L] # 왼쪽거를 땡겨서 작게 만듦
+                L += 1
+            R += 1 # target 보다 현재값이 작다면 오른쪽 확장
+        
+        if ans <= len(nums):
+            return ans 
+
+        return 0
+
+
+        
