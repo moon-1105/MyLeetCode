@@ -1,0 +1,27 @@
+from collections import Counter
+class Solution(object):
+    def check(self, s) :
+        chk = Counter(s)
+        for ele in chk.values() :
+            if ele != 1:
+                return False
+        return True
+
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        ans=L=R=0
+        N = len(s)
+        if N == 0 :
+            return 0
+        while R < N :
+            cur = s[L:R]
+            while self.check(cur):
+                cur = s[L:R]
+                ans = max(ans, len(cur))
+                R+=1
+            L += 1
+        
+        return ans-1
