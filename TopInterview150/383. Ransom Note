@@ -1,0 +1,16 @@
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        r = Counter(ransomNote)
+        m = Counter(magazine)
+        keys = set([])
+        for k in r.keys():
+            keys.add(k)
+        for k in m.keys():
+            keys.add(k)
+        #print(keys)
+        for k in keys:
+            #print(r[k], m[k])
+            if r[k] > m[k] :
+                return False
+        return True
+        
