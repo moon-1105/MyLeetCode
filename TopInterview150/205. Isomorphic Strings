@@ -1,0 +1,13 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        s_map, t_map = [], []
+        for ch in s :
+            s_map.append(s.index(ch))
+        for ch in t :
+            t_map.append(t.index(ch))
+        
+        if s_map == t_map:
+            return True
+
+        return False
+            
