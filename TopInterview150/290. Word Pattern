@@ -1,0 +1,16 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        s = s.split()
+        p_check, s_check = [], []
+        for idx in range(len(pattern)):
+            p_check.append(pattern.index(pattern[idx]))
+        for idx in range(len(s)):
+            s_check.append(s.index(s[idx]))
+
+        #print(p_check)
+        #print(s_check)
+        if p_check == s_check :
+            return True
+                    
+        return False
+        
