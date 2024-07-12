@@ -5,13 +5,17 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        si, ti = 0,0  
-        while ti < len(t) and si < len(s):
-            if t[ti] == s[si] :
-                si += 1
-            ti += 1
-        #print(si)
-        if si == len(s):
+        chk = len(s)-1
+        if s == t :
+            return True
+        if chk < 0 :
+            return True
+        for idx in range(len(t)-1,-1,-1):
+            #print(chk,s[chk],t[idx])
+            if chk >=0 and s[chk] == t[idx]:
+                chk-=1
+        #print(chk)
+        if chk < 0 :
             return True
         return False
         
