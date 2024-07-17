@@ -1,17 +1,24 @@
 class Solution(object):
+    def cal(self, L, R, height):
+        return (R-L)*min(height[L],height[R])
+
     def maxArea(self, height):
         """
         :type height: List[int]
         :rtype: int
         """
         L, R = 0, len(height)-1
-        water = 0
-        while L < R :
-            water = max(min(height[L],height[R])*(R-L), water)
-            #height는 높아지는게 이득 
-            #따라서 더 낮은 쪽을 조금씩 움직며봄 
-            if height[L] < height[R]:
+        Max = self.cal(L,R,height)
+        while L<R :
+            now = self.cal(L,R,height) 
+            Max = max(now,Max) 
+            if height[L] < height[R] :
                 L+=1
             else:
-                R-=1
-        return water
+                R-=1    
+
+        return Max
+
+            
+
+        
